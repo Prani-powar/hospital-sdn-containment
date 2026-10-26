@@ -1,0 +1,12 @@
+FROM python:3.11.11-slim-bookworm
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1
+RUN python -m venv /opt/services
+ENV PATH="/opt/services/bin:$PATH"
+COPY requirements/services.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir pip==24.3.1 \
+    && pip install --no-cache-dir -r /tmp/requirements.txt && pip check
+COPY runtime_check.py /opt/runtime_check.py
+RUN python /opt/runtime_check.py services
+WORKDIR /repo
+USER 65534:65534
+CMD ["python", "/opt/runtime_check.py", "services"]
