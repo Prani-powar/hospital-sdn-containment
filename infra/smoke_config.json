@@ -1,0 +1,9 @@
+{
+  "controller_host": "127.0.0.1",
+  "controller_port": 16653,
+  "connect_timeout_s": 15,
+  "critical_port": 19000,
+  "quarantine_timeout_s": 4,
+  "critical_priority": 50000,
+  "quarantine_priority": 40000
+}
