@@ -1,0 +1,29 @@
+services:
+  ryu:
+    build:
+      context: .
+      dockerfile: Dockerfile.ryu
+    network_mode: host
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: "no"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1',16653),2).close()"]
+      interval: 5s
+      timeout: 3s
+      retries: 6
+  services-check:
+    build:
+      context: .
+      dockerfile: Dockerfile.services
+    network_mode: none
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    volumes:
+      - ..:/repo:ro
