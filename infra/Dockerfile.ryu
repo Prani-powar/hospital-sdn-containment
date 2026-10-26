@@ -1,0 +1,14 @@
+FROM python:3.9.23-slim-bookworm
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 EVENTLET_NO_GREENDNS=yes
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev \
+    && rm -rf /var/lib/apt/lists/*
+RUN python -m venv /opt/ryu
+ENV PATH="/opt/ryu/bin:$PATH"
+COPY requirements/ryu.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir pip==23.2.1 setuptools==57.5.0 wheel==0.38.4 \
+    && pip install --no-cache-dir --no-build-isolation -r /tmp/requirements.txt \
+    && pip check
+COPY runtime_check.py /opt/runtime_check.py
+RUN python /opt/runtime_check.py ryu
+USER 65534:65534
+CMD ["ryu-manager", "--ofp-listen-host", "127.0.0.1", "--ofp-tcp-listen-port", "16653", "ryu.app.simple_switch_13"]
