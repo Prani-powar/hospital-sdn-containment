@@ -1,0 +1,50 @@
+schema_version: 1
+model_version: fanout-rule-v1
+feature_spec_version: source-ingress-proxy-v1
+profile_version: hospital-peer-profile-v1
+anomalous_windows: 2
+clean_windows: 3
+max_feature_age_s: 4
+max_step_gap_s: 4
+containment_timeout_s: 20
+vendor_escalation_windows: 3
+# Lab policy proposals only; no management service is assumed to exist here.
+management_peers: [dns_ad]
+thresholds:
+  admin: {unique_dst: 8, unique_dst_ports: 12, off_profile_min: 1}
+  clinical: {unique_dst: 6, unique_dst_ports: 12, off_profile_min: 1}
+  critical_server: {unique_dst: 20, unique_dst_ports: 48, off_profile_min: 1}
+  iomt: {unique_dst: 4, unique_dst_ports: 8, off_profile_min: 1}
+  guest: {unique_dst: 3, unique_dst_ports: 8, off_profile_min: 1}
+  vendor: {unique_dst: 4, unique_dst_ports: 8, off_profile_min: 1}
+allowed_peers_by_role:
+  admin: [dns_ad]
+  guest: [dns_ad]
+  clinical: [ehr, dns_ad]
+  critical_server: []
+  iomt: [ehr, pacs, central_mon, dns_ad]
+  vendor: [dns_ad, pacs, imaging1]
+allowed_peer_overrides:
+  monitor1: [central_mon, dns_ad]
+  monitor2: [central_mon, dns_ad]
+  monitor3: [central_mon, dns_ad]
+  pump1: [ehr, dns_ad]
+  pump2: [ehr, dns_ad]
+  imaging1: [pacs, dns_ad]
+# Host pairs whose critical allows must not be overridden by PROTECT.
+protected_pairs:
+  - [monitor1, central_mon]
+  - [monitor2, central_mon]
+  - [monitor3, central_mon]
+  - [pump1, ehr]
+  - [pump2, ehr]
+  - [imaging1, pacs]
+  - [nurse1, ehr]
+  - [nurse2, ehr]
+  - [nurse3, ehr]
+  - [doctor1, ehr]
+  - [doctor2, ehr]
+  - [doctor3, ehr]
+  - [lis, ehr]
+  - [ehr, lis]
+demo_hosts: [reception1, doctor1, monitor1, guest1, vendor_gw, ehr]

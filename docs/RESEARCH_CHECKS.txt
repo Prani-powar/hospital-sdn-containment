@@ -1,0 +1,220 @@
+Checking controller/tests
+test_busy_auth_and_epoch_errors_do_not_replay_writes (test_action_client.ClientActionTests.test_busy_auth_and_epoch_errors_do_not_replay_writes) ... ok
+test_cancelled_write_keeps_worker_slot_until_underlying_http_finishes (test_action_client.ClientActionTests.test_cancelled_write_keeps_worker_slot_until_underlying_http_finishes) ... ok
+test_payload_endpoint_and_release_contract_checks (test_action_client.ClientActionTests.test_payload_endpoint_and_release_contract_checks) ... ok
+test_pending_is_not_confirmed_and_no_automatic_post_retries (test_action_client.ClientActionTests.test_pending_is_not_confirmed_and_no_automatic_post_retries) ... ok
+test_cancelled_caller_does_not_free_a_running_worker_slot (test_client.ClientTests.test_cancelled_caller_does_not_free_a_running_worker_slot) ... ok
+test_disallow_external_endpoints_and_mutation_paths (test_client.ClientTests.test_disallow_external_endpoints_and_mutation_paths) ... ok
+test_real_reads_keep_asyncio_responsive_and_surface_degraded_health (test_client.ClientTests.test_real_reads_keep_asyncio_responsive_and_surface_degraded_health) ... ok
+test_response_size_bound (test_client.ClientTests.test_response_size_bound) ... ok
+test_stale_data_is_rejected_unless_explicitly_requested (test_client.ClientTests.test_stale_data_is_rejected_unless_explicitly_requested) ... ok
+test_cursor_deduplicates_and_reports_missed_prefix_and_later_gap (test_client.CursorTests.test_cursor_deduplicates_and_reports_missed_prefix_and_later_gap) ... ok
+test_epoch_change_and_guard_deltas_are_explicit (test_client.CursorTests.test_epoch_change_and_guard_deltas_are_explicit) ... ok
+test_regression_rejected_without_advancing_cursor (test_client.CursorTests.test_regression_rejected_without_advancing_cursor) ... ok
+test_duplicate_matches_renew_without_consuming_extra_slots (test_core.BoundedStateTests.test_duplicate_matches_renew_without_consuming_extra_slots) ... ok
+test_expiry_scan_handles_renewed_earlier_entries (test_core.BoundedStateTests.test_expiry_scan_handles_renewed_earlier_entries) ... ok
+test_rule_budget_bounds_rules_even_without_flow_stats (test_core.BoundedStateTests.test_rule_budget_bounds_rules_even_without_flow_stats) ... ok
+test_token_bucket_refills_without_queue_or_burst_growth (test_core.BoundedStateTests.test_token_bucket_refills_without_queue_or_burst_growth) ... ok
+test_config_rejects_unbounded_resources_or_invalid_timeouts (test_core.FabricTests.test_config_rejects_unbounded_resources_or_invalid_timeouts) ... ok
+test_configured_paths_and_source_attachment (test_core.FabricTests.test_configured_paths_and_source_attachment) ... ok
+test_ingress_attribution_avoids_counting_transit_copies (test_core.FabricTests.test_ingress_attribution_avoids_counting_transit_copies) ... ok
+test_normal_cookie_namespace_and_staggered_expiry (test_core.FabricTests.test_normal_cookie_namespace_and_staggered_expiry) ... ok
+test_transport_match_prerequisites_and_ports (test_core.FabricTests.test_transport_match_prerequisites_and_ports) ... ok
+test_missing_disconnect_reconnect_and_generation_reset (test_core.PollTests.test_missing_disconnect_reconnect_and_generation_reset) ... ok
+test_multipart_is_hidden_until_final_and_rows_are_copied (test_core.PollTests.test_multipart_is_hidden_until_final_and_rows_are_copied) ... ok
+test_old_errors_cannot_clear_new_request (test_core.PollTests.test_old_errors_cannot_clear_new_request) ... ok
+test_overflow_late_reply_and_api_truncation_are_not_complete (test_core.PollTests.test_overflow_late_reply_and_api_truncation_are_not_complete) ... ok
+test_overlap_timeout_and_stale_xid (test_core.PollTests.test_overlap_timeout_and_stale_xid) ... ok
+test_allows_precede_ingress_drop_then_propagation (test_enforcement.EnforcementTests.test_allows_precede_ingress_drop_then_propagation) ... ok
+test_busy_request_does_not_consume_host_version (test_enforcement.EnforcementTests.test_busy_request_does_not_consume_host_version) ... ok
+test_deadline_disconnect_error_and_send_failure_are_not_success (test_enforcement.EnforcementTests.test_deadline_disconnect_error_and_send_failure_are_not_success) ... ok
+test_duplicate_id_is_idempotent_content_conflict_and_stale_version_rejected (test_enforcement.EnforcementTests.test_duplicate_id_is_idempotent_content_conflict_and_stale_version_rejected) ... ok
+test_every_protected_role_rejects_isolation_and_missing_vital_peer (test_enforcement.EnforcementTests.test_every_protected_role_rejects_isolation_and_missing_vital_peer) ... ok
+test_floor_is_confirmed_before_first_action_and_survives_release (test_enforcement.EnforcementTests.test_floor_is_confirmed_before_first_action_and_survives_release) ... ok
+test_multipart_bounds_and_obsolete_reply (test_enforcement.EnforcementTests.test_multipart_bounds_and_obsolete_reply) ... ok
+test_new_owner_and_wrong_controller_epoch_rejected (test_enforcement.EnforcementTests.test_new_owner_and_wrong_controller_epoch_rejected) ... ok
+test_protect_targets_attacker_source_and_rejects_critical_conflict (test_enforcement.EnforcementTests.test_protect_targets_attacker_source_and_rejects_critical_conflict) ... ok
+test_readback_mismatch_never_emits_installed (test_enforcement.EnforcementTests.test_readback_mismatch_never_emits_installed) ... ok
+test_replacement_uses_full_cookie_strict_deletion_without_deleting_new_rules (test_enforcement.EnforcementTests.test_replacement_uses_full_cookie_strict_deletion_without_deleting_new_rules) ... ok
+test_synchronous_replies_cannot_advance_a_partially_registered_batch (test_enforcement.EnforcementTests.test_synchronous_replies_cannot_advance_a_partially_registered_batch) ... ok
+test_mid_drop_disconnect_requires_floor_recovery_and_explicit_scoped_release (test_recovery.RecoveryTests.test_mid_drop_disconnect_requires_floor_recovery_and_explicit_scoped_release) ... ok
+test_release_of_one_host_keeps_other_host_containment_and_all_critical_rules (test_recovery.RecoveryTests.test_release_of_one_host_keeps_other_host_containment_and_all_critical_rules) ... ok
+test_ttl_expiry_racing_release_confirms_absence_without_removing_floor (test_recovery.RecoveryTests.test_ttl_expiry_racing_release_confirms_absence_without_removing_floor) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 5.368s
+
+OK
+Checking decision/tests
+test_real_http_collection_events_features_and_exclusive_output (test_collector.CollectorTests.test_real_http_collection_events_features_and_exclusive_output) ... ok
+test_actual_feature_extractor_to_detector_and_role_policy (test_detection.DetectionTests.test_actual_feature_extractor_to_detector_and_role_policy) ... ok
+test_all_clinical_and_iomt_hosts_never_automatically_isolate (test_detection.DetectionTests.test_all_clinical_and_iomt_hosts_never_automatically_isolate) ... ok
+test_clean_release_and_invalid_data_does_not_count_as_clean (test_detection.DetectionTests.test_clean_release_and_invalid_data_does_not_count_as_clean) ... ok
+test_config_cannot_remove_vital_peer_or_add_unknown_role (test_detection.DetectionTests.test_config_cannot_remove_vital_peer_or_add_unknown_role) ... ok
+test_critical_server_requires_source_and_preserves_vital_allow (test_detection.DetectionTests.test_critical_server_requires_source_and_preserves_vital_allow) ... ok
+test_duplicate_and_out_of_order_windows_cannot_trigger_or_renew (test_detection.DetectionTests.test_duplicate_and_out_of_order_windows_cannot_trigger_or_renew) ... ok
+test_epoch_change_breaks_streaks_without_forgetting_desired_lease (test_detection.DetectionTests.test_epoch_change_breaks_streaks_without_forgetting_desired_lease) ... ok
+test_exact_score_action_contract_and_consecutive_confirmation (test_detection.DetectionTests.test_exact_score_action_contract_and_consecutive_confirmation) ... ok
+test_invalid_missing_and_gapped_windows_break_streaks (test_detection.DetectionTests.test_invalid_missing_and_gapped_windows_break_streaks) ... ok
+test_lease_expires_without_new_telemetry_and_never_claims_installed_state (test_detection.DetectionTests.test_lease_expires_without_new_telemetry_and_never_claims_installed_state) ... ok
+test_normal_busy_role_and_port_scan_detection (test_detection.DetectionTests.test_normal_busy_role_and_port_scan_detection) ... ok
+test_offline_replay_runs_real_logic_without_enforcement_events (test_detection.DetectionTests.test_offline_replay_runs_real_logic_without_enforcement_events) ... ok
+test_spoofed_stale_nan_and_inconsistent_features_fail_closed (test_detection.DetectionTests.test_spoofed_stale_nan_and_inconsistent_features_fail_closed) ... ok
+test_state_is_fixed_inventory_and_streaks_are_capped (test_detection.DetectionTests.test_state_is_fixed_inventory_and_streaks_are_capped) ... ok
+test_vendor_escalates_only_after_additional_confirmed_windows (test_detection.DetectionTests.test_vendor_escalates_only_after_additional_confirmed_windows) ... ok
+test_bad_configuration_unknown_peers_and_unbounded_values (test_features.FeatureTests.test_bad_configuration_unknown_peers_and_unbounded_values) ... ok
+test_counter_and_observation_tuple_are_deduplicated (test_features.FeatureTests.test_counter_and_observation_tuple_are_deduplicated) ... ok
+test_counter_reset_disappearance_and_generation_reset_invalidate (test_features.FeatureTests.test_counter_reset_disappearance_and_generation_reset_invalidate) ... ok
+test_critical_wildcard_and_specific_tuple_form_one_group (test_features.FeatureTests.test_critical_wildcard_and_specific_tuple_form_one_group) ... ok
+test_duration_reset_with_increasing_counters_is_not_a_new_rate (test_features.FeatureTests.test_duration_reset_with_increasing_counters_is_not_a_new_rate) ... ok
+test_exact_contract_counter_deltas_and_sliding_window (test_features.FeatureTests.test_exact_contract_counter_deltas_and_sliding_window) ... ok
+test_historical_new_row_never_imports_old_totals (test_features.FeatureTests.test_historical_new_row_never_imports_old_totals) ... ok
+test_irregular_intervals_report_actual_window_duration (test_features.FeatureTests.test_irregular_intervals_report_actual_window_duration) ... ok
+test_malformed_counter_and_observation_rejected (test_features.FeatureTests.test_malformed_counter_and_observation_rejected) ... ok
+test_new_peer_history_expires_and_state_is_bounded (test_features.FeatureTests.test_new_peer_history_expires_and_state_is_bounded) ... ok
+test_observation_only_flow_is_visible_without_invented_bytes (test_features.FeatureTests.test_observation_only_flow_is_visible_without_invented_bytes) ... ok
+test_repeated_poll_vector_does_not_emit_zero_traffic_window (test_features.FeatureTests.test_repeated_poll_vector_does_not_emit_zero_traffic_window) ... ok
+test_restart_guard_and_eviction_invalidate_then_rewarm (test_features.FeatureTests.test_restart_guard_and_eviction_invalidate_then_rewarm) ... ok
+test_safe_new_rule_and_short_age_proxy (test_features.FeatureTests.test_safe_new_rule_and_short_age_proxy) ... ok
+test_stale_partial_missing_and_future_snapshots_rejected (test_features.FeatureTests.test_stale_partial_missing_and_future_snapshots_rejected) ... ok
+test_transit_and_drop_rows_do_not_double_count (test_features.FeatureTests.test_transit_and_drop_rows_do_not_double_count) ... ok
+test_tuple_and_segment_bounds_fail_closed (test_features.FeatureTests.test_tuple_and_segment_bounds_fail_closed) ... ok
+test_attack_start_requires_safe_identity_and_timestamp (test_label_windows.LabelWindowsTests.test_attack_start_requires_safe_identity_and_timestamp) ... ok
+test_normal_only_run_has_no_attack_event_dependency (test_label_windows.LabelWindowsTests.test_normal_only_run_has_no_attack_event_dependency) ... ok
+test_only_attack_source_is_labelled_after_attack_start (test_label_windows.LabelWindowsTests.test_only_attack_source_is_labelled_after_attack_start) ... ok
+test_busy_retains_identical_proposal_but_uncertain_write_halts (test_live.LiveTests.test_busy_retains_identical_proposal_but_uncertain_write_halts) ... ok
+test_censored_clean_windows_cannot_release_and_ttl_can (test_live.LiveTests.test_censored_clean_windows_cannot_release_and_ttl_can) ... ok
+test_failure_and_event_gap_never_become_confirmed (test_live.LiveTests.test_failure_and_event_gap_never_become_confirmed) ... ok
+test_observe_never_calls_mutation (test_live.LiveTests.test_observe_never_calls_mutation) ... ok
+test_previous_planner_and_epoch_changes_halt_writes (test_live.LiveTests.test_previous_planner_and_epoch_changes_halt_writes) ... ok
+test_queued_is_not_confirmed_and_confirmation_is_separate (test_live.LiveTests.test_queued_is_not_confirmed_and_confirmation_is_separate) ... ok
+test_snapshot_atomic_and_contract_events (test_live.LiveTests.test_snapshot_atomic_and_contract_events) ... ok
+test_snapshot_explains_actual_thresholds_and_suspicion_streak (test_live.LiveTests.test_snapshot_explains_actual_thresholds_and_suspicion_streak) ... ok
+test_explicit_validation_calibration_and_no_test_seed_fitting (test_ml_pipeline.MlPipelineTests.test_explicit_validation_calibration_and_no_test_seed_fitting) ... ok
+test_input_contract_and_grouped_holdout (test_ml_pipeline.MlPipelineTests.test_input_contract_and_grouped_holdout) ... ok
+test_role_specific_m1_artifact_is_trained_from_clean_windows (test_ml_pipeline.MlPipelineTests.test_role_specific_m1_artifact_is_trained_from_clean_windows) ... ok
+test_unlabelled_windows_are_rejected_for_supervised_input (test_ml_pipeline.MlPipelineTests.test_unlabelled_windows_are_rejected_for_supervised_input) ... ok
+test_every_critical_service_has_a_highest_priority_forward_rule_during_restriction (test_pipeline_integration.IntegrationTests.test_every_critical_service_has_a_highest_priority_forward_rule_during_restriction) ... ok
+test_live_proposal_pending_confirmed_then_explicit_release (test_pipeline_integration.IntegrationTests.test_live_proposal_pending_confirmed_then_explicit_release) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 9.249s
+
+OK
+Checking topology/tests
+test_actual_local_worker_processes_and_summaries (test_clinical.ClinicalTests.test_actual_local_worker_processes_and_summaries) ... ok
+test_bound_rate_duration_ports_and_waits (test_clinical.ClinicalTests.test_bound_rate_duration_ports_and_waits) ... ok
+test_cleanup_escalates_only_owned_stuck_worker (test_clinical.ClinicalTests.test_cleanup_escalates_only_owned_stuck_worker) ... ok
+test_ignore_wrong_echo_without_accepting_it_as_success (test_clinical.ClinicalTests.test_ignore_wrong_echo_without_accepting_it_as_success) ... ok
+test_partial_start_failure_can_be_cleaned_up (test_clinical.ClinicalTests.test_partial_start_failure_can_be_cleaned_up) ... ok
+test_real_local_udp_echo_and_malformed_packet_drop (test_clinical.ClinicalTests.test_real_local_udp_echo_and_malformed_packet_drop) ... ok
+test_reject_malformed_foreign_and_oversized_messages (test_clinical.ClinicalTests.test_reject_malformed_foreign_and_oversized_messages) ... ok
+test_reject_wrong_role_unknown_host_duplicate_source (test_clinical.ClinicalTests.test_reject_wrong_role_unknown_host_duplicate_source) ... ok
+test_status_counts_only_complete_probe_records (test_clinical.ClinicalTests.test_status_counts_only_complete_probe_records) ... ok
+test_valid_endpoint_mapping (test_clinical.ClinicalTests.test_valid_endpoint_mapping) ... ok
+test_config_matches_all_five_floor_services_and_is_bounded (test_critical_suite.SuiteTests.test_config_matches_all_five_floor_services_and_is_bounded) ... ok
+test_flow_identity_prevents_cross_service_echo (test_critical_suite.SuiteTests.test_flow_identity_prevents_cross_service_echo) ... ok
+test_no_workers_or_empty_logs_cannot_pass (test_critical_suite.SuiteTests.test_no_workers_or_empty_logs_cannot_pass) ... ok
+test_partial_failure_stops_every_started_session (test_critical_suite.SuiteTests.test_partial_failure_stops_every_started_session) ... ok
+test_phase_evidence_ignores_stale_and_rejects_duplicate_foreign_or_invalid_rows (test_critical_suite.SuiteTests.test_phase_evidence_ignores_stale_and_rejects_duplicate_foreign_or_invalid_rows) ... ok
+test_real_all_five_local_udp_sessions_and_cleanup (test_critical_suite.SuiteTests.test_real_all_five_local_udp_sessions_and_cleanup) ... ok
+test_generated_network_is_one_connected_tree (test_hospital.HospitalTests.test_generated_network_is_one_connected_tree) ... ok
+test_hospital_inventory_and_roles (test_hospital.HospitalTests.test_hospital_inventory_and_roles) ... ok
+test_macs_interfaces_and_switch_ports_are_unique (test_hospital.HospitalTests.test_macs_interfaces_and_switch_ports_are_unique) ... ok
+test_openflow13_secure_switches_and_no_external_nodes (test_hospital.HospitalTests.test_openflow13_secure_switches_and_no_external_nodes) ... ok
+test_reject_duplicate_ip_name_and_dpid (test_hospital.HospitalTests.test_reject_duplicate_ip_name_and_dpid) ... ok
+test_reject_duplicate_yaml_keys (test_hospital.HospitalTests.test_reject_duplicate_yaml_keys) ... ok
+test_reject_invalid_addresses (test_hospital.HospitalTests.test_reject_invalid_addresses) ... ok
+test_reject_nonlocal_controller_and_unbounded_wait (test_hospital.HospitalTests.test_reject_nonlocal_controller_and_unbounded_wait) ... ok
+test_reject_public_network_and_wrong_inventory (test_hospital.HospitalTests.test_reject_public_network_and_wrong_inventory) ... ok
+test_reject_unknown_role (test_hospital.HospitalTests.test_reject_unknown_role) ... ok
+test_exact_cookie_filter_ignores_headers_and_longer_cookie (test_restriction_demo.RestrictionTests.test_exact_cookie_filter_ignores_headers_and_longer_cookie) ... ok
+test_forward_and_reverse_paths_use_explicit_correct_ports (test_restriction_demo.RestrictionTests.test_forward_and_reverse_paths_use_explicit_correct_ports) ... ok
+test_phase_metrics_do_not_count_stale_or_outside_records (test_restriction_demo.RestrictionTests.test_phase_metrics_do_not_count_stale_or_outside_records) ... ok
+test_ping_error_or_zero_drop_matches_cannot_count_as_success (test_restriction_demo.RestrictionTests.test_ping_error_or_zero_drop_matches_cannot_count_as_success) ... ok
+test_reject_missing_traffic_wrong_target_and_unsafe_timing (test_restriction_demo.RestrictionTests.test_reject_missing_traffic_wrong_target_and_unsafe_timing) ... ok
+test_specific_allows_precede_drop_on_ingress (test_restriction_demo.RestrictionTests.test_specific_allows_precede_drop_on_ingress) ... ok
+test_stopped_worker_cannot_pass_on_old_metrics (test_restriction_demo.RestrictionTests.test_stopped_worker_cannot_pass_on_old_metrics) ... ok
+test_three_phases_and_expiry_evidence_are_persisted (test_restriction_demo.RestrictionTests.test_three_phases_and_expiry_evidence_are_persisted) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 4.105s
+
+OK
+Checking dashboard
+test_snapshot_requires_matching_epoch_fresh_clock_and_running_service (test_bridge.BridgeTests.test_snapshot_requires_matching_epoch_fresh_clock_and_running_service) ... ok
+test_clinical_success_requires_every_configured_source_and_nonzero_replies (test_bridge.ExtendedSnapshotTests.test_clinical_success_requires_every_configured_source_and_nonzero_replies) ... ok
+test_non_object_corrupt_or_missing_identity_never_breaks_telemetry (test_bridge.ExtendedSnapshotTests.test_non_object_corrupt_or_missing_identity_never_breaks_telemetry) ... ok
+test_http_redirect_is_rejected_without_following_it (test_bridge.HttpBridgeTests.test_http_redirect_is_rejected_without_following_it) ... ok
+test_real_http_degraded_health_origin_gate_no_post_or_arbitrary_proxy (test_bridge.HttpBridgeTests.test_real_http_degraded_health_origin_gate_no_post_or_arbitrary_proxy) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.653s
+
+OK
+Checking scripts/tests
+test_rejects_duplicate_seed_identity (test_aggregate_benchmarks.AggregateTests.test_rejects_duplicate_seed_identity) ... ok
+test_reports_seed_level_mean_and_t_interval_without_filling_missing (test_aggregate_benchmarks.AggregateTests.test_reports_seed_level_mean_and_t_interval_without_filling_missing) ... ok
+test_all_five_services_and_real_action_order_required (test_demo.DemoTests.test_all_five_services_and_real_action_order_required) ... ok
+test_cleanup_uses_only_created_container_id_and_stops_owned_processes (test_demo.DemoTests.test_cleanup_uses_only_created_container_id_and_stops_owned_processes) ... ok
+test_host_selection_and_role_correct_action (test_demo.DemoTests.test_host_selection_and_role_correct_action) ... ok
+test_random_excludes_previous_and_validate_does_not_write_history (test_demo.DemoTests.test_random_excludes_previous_and_validate_does_not_write_history) ... ok
+test_stale_pending_identical_or_mistimed_actions_never_pass (test_demo.DemoTests.test_stale_pending_identical_or_mistimed_actions_never_pass) ... ok
+test_validate_only_runs_without_root_or_network (test_demo.DemoTests.test_validate_only_runs_without_root_or_network) ... ok
+test_commands_reject_unknown_and_double_launch (test_lab.LabTests.test_commands_reject_unknown_and_double_launch) ... ok
+test_drop_proof_requires_both_directions_every_switch (test_lab.LabTests.test_drop_proof_requires_both_directions_every_switch) ... ok
+test_events_are_bounded (test_lab.LabTests.test_events_are_bounded) ... ok
+test_mutations_require_local_origin_and_json (test_lab.LabTests.test_mutations_require_local_origin_and_json) ... 127.0.0.1 - - [28/Oct/2026 18:48:40] code 403, message Forbidden
+127.0.0.1 - - [28/Oct/2026 18:48:40] "POST /api/lab/scenario HTTP/1.1" 403 -
+127.0.0.1 - - [28/Oct/2026 18:48:40] code 403, message Forbidden
+127.0.0.1 - - [28/Oct/2026 18:48:40] "POST /api/lab/scenario HTTP/1.1" 403 -
+127.0.0.1 - - [28/Oct/2026 18:48:40] code 403, message Forbidden
+127.0.0.1 - - [28/Oct/2026 18:48:40] "POST /api/lab/scenario HTTP/1.1" 403 -
+127.0.0.1 - - [28/Oct/2026 18:48:40] "POST /api/lab/scenario HTTP/1.1" 202 -
+ok
+test_pending_null_timestamp_does_not_crash_or_confirm (test_lab.LabTests.test_pending_null_timestamp_does_not_crash_or_confirm) ... ok
+test_prefix_ip_does_not_count_as_exact_source (test_lab.LabTests.test_prefix_ip_does_not_count_as_exact_source) ... ok
+test_stale_session_cannot_launch_or_claim_containment (test_lab.LabTests.test_stale_session_cannot_launch_or_claim_containment) ... ok
+test_audit_rejects_mixed_runs_and_malformed_contracts (test_summary.SummaryTests.test_audit_rejects_mixed_runs_and_malformed_contracts) ... ok
+test_corrupt_counts_nan_and_unknown_phases_are_rejected (test_summary.SummaryTests.test_corrupt_counts_nan_and_unknown_phases_are_rejected) ... ok
+test_counts_are_phase_scoped_and_rtt_uses_reply_weights (test_summary.SummaryTests.test_counts_are_phase_scoped_and_rtt_uses_reply_weights) ... ok
+test_export_is_exclusive_and_preserves_source_provenance (test_summary.SummaryTests.test_export_is_exclusive_and_preserves_source_provenance) ... ok
+test_latency_requires_matching_proposal_host_and_readback_evidence (test_summary.SummaryTests.test_latency_requires_matching_proposal_host_and_readback_evidence) ... ok
+test_saved_pass_cannot_hide_loss_wrong_run_missing_probe_or_insufficient_coverage (test_summary.SummaryTests.test_saved_pass_cannot_hide_loss_wrong_run_missing_probe_or_insufficient_coverage) ... ok
+test_varied_source_is_reassessed_and_wrong_probe_host_rejected (test_summary.SummaryTests.test_varied_source_is_reassessed_and_wrong_probe_host_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.303s
+
+OK
+Checking infra/tests
+test_reject_external_controller (test_infra.ConfigurationTests.test_reject_external_controller) ... ok
+test_reject_invalid_ports (test_infra.ConfigurationTests.test_reject_invalid_ports) ... ok
+test_reject_non_expiring_or_unbounded_quarantine (test_infra.ConfigurationTests.test_reject_non_expiring_or_unbounded_quarantine) ... ok
+test_reject_priority_override (test_infra.ConfigurationTests.test_reject_priority_override) ... ok
+test_reject_unbounded_wait (test_infra.ConfigurationTests.test_reject_unbounded_wait) ... ok
+test_valid_config (test_infra.ConfigurationTests.test_valid_config) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK
+Checking experiments/tests
+test_labels_exclude_boundary_and_censored_windows (test_research.ResearchTests.test_labels_exclude_boundary_and_censored_windows) ... ok
+test_marker_receipt_and_normal_reply_use_real_udp (test_research.ResearchTests.test_marker_receipt_and_normal_reply_use_real_udp) ... ok
+test_missing_detection_is_not_zero_latency (test_research.ResearchTests.test_missing_detection_is_not_zero_latency) ... ok
+test_missing_or_broken_ml_never_falls_back (test_research.ResearchTests.test_missing_or_broken_ml_never_falls_back) ... ok
+test_rule_readback_is_match_sensitive (test_research.ResearchTests.test_rule_readback_is_match_sensitive) ... ok
+test_scalability_configs_validate (test_research.ResearchTests.test_scalability_configs_validate) ... ok
+test_seed_separation_and_matrix_coverage (test_research.ResearchTests.test_seed_separation_and_matrix_coverage) ... ok
+test_selected_ml_drives_real_policy_even_when_m3_is_clean (test_research.ResearchTests.test_selected_ml_drives_real_policy_even_when_m3_is_clean) ... ok
+test_static_rules_keep_service_exception_above_drop (test_research.ResearchTests.test_static_rules_keep_service_exception_above_drop) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 1.721s
+
+OK
+UI logic passed: evidence visibility, clinical counts, and report validation. Browser rendering is a separate check.
+Detection timing, stale/censored evidence, per-source delivery and explicit review gates passed.
+Spatial containment, delayed probing and explicit green restoration passed.
+Portable checks passed. Ryu image and real OVS checks are separate pending gates.

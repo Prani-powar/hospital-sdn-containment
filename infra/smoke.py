@@ -49,6 +49,9 @@ def main(config: dict) -> None:
         pass
     token = uuid.uuid4().hex[:6]
     bridge = "hs" + token
+    # Mininet cannot reliably infer a DPID from our random bridge name.
+    # Keep it explicit and independent of other lab switches' fixed DPIDs.
+    dpid = uuid.uuid4().hex[:16]
     # Unique names and no mn -c: never delete unrelated lab bridges.
     net = Mininet(controller=None, switch=OVSSwitch, build=False)
     server = None
@@ -56,7 +59,8 @@ def main(config: dict) -> None:
         controller = net.addController("c" + token, controller=RemoteController,
                                        ip=config["controller_host"],
                                        port=config["controller_port"])
-        switch = net.addSwitch(bridge, protocols="OpenFlow13", failMode="secure")
+        switch = net.addSwitch(bridge, dpid=dpid,
+                               protocols="OpenFlow13", failMode="secure")
         h1 = net.addHost("a" + token, ip="10.254.250.1/24")
         h2 = net.addHost("b" + token, ip="10.254.250.2/24")
         net.addLink(h1, switch)
@@ -116,7 +120,8 @@ def main(config: dict) -> None:
         ofctl("add-flow", bridge,
               f"cookie=0x40000,priority=40000,ip,nw_src={h1.IP()},"
               f"hard_timeout={ttl},actions=drop")
-        ofctl("barrier", bridge)
+        if "cookie=0x40000" not in ofctl("dump-flows", bridge):
+            raise AssertionError("Quarantine rule was not confirmed on the switch")
         if ping_ok():
             raise AssertionError("Quarantine did not block non-critical ICMP")
         if not probe_ok():

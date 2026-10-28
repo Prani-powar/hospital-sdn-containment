@@ -1,0 +1,58 @@
+# Flat L2 emulator only. These groups are not VLANs or enforced security zones.
+schema_version: 1
+name: hospital
+expected_host_count: 24
+subnet: 10.20.0.0/24
+controller:
+  name: c_hospital
+  host: 127.0.0.1
+  port: 16653
+  connect_timeout_s: 20
+core:
+  name: s_core
+  dpid: "0000000000000001"
+segments:
+  - name: admin
+    switch: s_admin
+    dpid: "0000000000000011"
+    hosts:
+      - {name: reception1, role: admin, ip: 10.20.0.1/24}
+      - {name: reception2, role: admin, ip: 10.20.0.2/24}
+      - {name: billing1, role: admin, ip: 10.20.0.3/24}
+      - {name: hr1, role: admin, ip: 10.20.0.4/24}
+  - name: clinical
+    switch: s_clinic
+    dpid: "0000000000000012"
+    hosts:
+      - {name: nurse1, role: clinical, ip: 10.20.0.5/24}
+      - {name: nurse2, role: clinical, ip: 10.20.0.6/24}
+      - {name: nurse3, role: clinical, ip: 10.20.0.7/24}
+      - {name: doctor1, role: clinical, ip: 10.20.0.8/24}
+      - {name: doctor2, role: clinical, ip: 10.20.0.9/24}
+      - {name: doctor3, role: clinical, ip: 10.20.0.10/24}
+  - name: servers
+    switch: s_server
+    dpid: "0000000000000013"
+    hosts:
+      - {name: ehr, role: critical_server, ip: 10.20.0.11/24}
+      - {name: pacs, role: critical_server, ip: 10.20.0.12/24}
+      - {name: lis, role: critical_server, ip: 10.20.0.13/24}
+      - {name: dns_ad, role: critical_server, ip: 10.20.0.14/24}
+      - {name: central_mon, role: critical_server, ip: 10.20.0.15/24}
+  - name: iomt
+    switch: s_iomt
+    dpid: "0000000000000014"
+    hosts:
+      - {name: monitor1, role: iomt, ip: 10.20.0.16/24}
+      - {name: monitor2, role: iomt, ip: 10.20.0.17/24}
+      - {name: monitor3, role: iomt, ip: 10.20.0.18/24}
+      - {name: pump1, role: iomt, ip: 10.20.0.19/24}
+      - {name: pump2, role: iomt, ip: 10.20.0.20/24}
+      - {name: imaging1, role: iomt, ip: 10.20.0.21/24}
+  - name: guest_vendor
+    switch: s_guest
+    dpid: "0000000000000015"
+    hosts:
+      - {name: guest1, role: guest, ip: 10.20.0.22/24}
+      - {name: guest2, role: guest, ip: 10.20.0.23/24}
+      - {name: vendor_gw, role: vendor, ip: 10.20.0.24/24}

@@ -1,0 +1,10 @@
+# Synthetic C1 only: these are lab probes, not real medical data or protocols.
+schema_version: 1
+flow_id: C1
+server: central_mon
+sources: [monitor1, monitor2, monitor3]
+udp_port: 18001
+rate_hz: 10
+reply_timeout_s: 0.08
+duration_s: 60
+startup_timeout_s: 5

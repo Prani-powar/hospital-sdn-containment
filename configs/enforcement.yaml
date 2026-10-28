@@ -1,0 +1,26 @@
+schema_version: 1
+variant: synthetic-c1-c5-protected-floor-v1
+max_timeout_s: 40
+exception_margin_s: 20
+transaction_timeout_s: 15
+reply_timeout_s: 3
+flow_mod_rate: 80
+flow_mod_burst: 80
+max_ops_per_tick: 12
+max_rows: 4096
+max_parts: 32
+# These are synthetic lab ports, not claims about real clinical protocols.
+critical_services:
+  - {sources: [monitor1, monitor2, monitor3], server: central_mon, protocol: udp, port: 18001}
+  - {sources: [pump1, pump2], server: ehr, protocol: udp, port: 18002}
+  - {sources: [imaging1], server: pacs, protocol: udp, port: 18003}
+  - {sources: [nurse1, nurse2, nurse3, doctor1, doctor2, doctor3], server: ehr, protocol: udp, port: 18004}
+  - {sources: [lis], server: ehr, protocol: udp, port: 18005}
+peer_services:
+  dns_ad: [{protocol: udp, port: 53}, {protocol: tcp, port: 53}]
+  ehr: [{protocol: udp, port: 18002}, {protocol: udp, port: 18004}, {protocol: udp, port: 18005}]
+  central_mon: [{protocol: udp, port: 18001}]
+  pacs: [{protocol: udp, port: 18003}]
+  imaging1: [{protocol: tcp, port: 18006}]
+management_services:
+  - {peer: dns_ad, protocol: tcp, port: 22}

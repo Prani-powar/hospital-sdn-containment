@@ -1,0 +1,10 @@
+# Functional C1 rule test only; not an automatic detector or B0-B3 evaluation.
+schema_version: 1
+target: monitor1
+blocked_peer: reception1
+warmup_s: 2
+phase_s: 3
+quarantine_timeout_s: 10
+expiry_grace_s: 5
+minimum_probes: 5
+minimum_success_rate: 1.0

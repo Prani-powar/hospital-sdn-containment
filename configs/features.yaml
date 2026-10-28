@@ -1,0 +1,31 @@
+schema_version: 1
+# Measurement profile only: this does not install any network policy.
+profile_version: hospital-peer-profile-v1
+window_s: 5
+max_poll_gap_s: 3.5
+max_snapshot_age_s: 3.5
+max_acquisition_s: 2.5
+peer_history_s: 60
+short_flow_age_s: 2
+poll_interval_s: 1
+max_rows: 8192
+max_observations: 4096
+max_segments: 64
+forward_priorities: [10000, 45000, 50000]
+summary_hosts: [monitor1, monitor2, monitor3]
+allowed_peers_by_role:
+  admin: [ehr, dns_ad]
+  clinical: [ehr, dns_ad]
+  critical_server: [reception1, reception2, billing1, hr1, nurse1, nurse2, nurse3,
+                    doctor1, doctor2, doctor3, ehr, pacs, lis, dns_ad, central_mon,
+                    monitor1, monitor2, monitor3, pump1, pump2, imaging1, vendor_gw]
+  iomt: [ehr, pacs, dns_ad, central_mon]
+  guest: [dns_ad]
+  vendor: [dns_ad, pacs, imaging1]
+allowed_peer_overrides:
+  monitor1: [central_mon, dns_ad]
+  monitor2: [central_mon, dns_ad]
+  monitor3: [central_mon, dns_ad]
+  pump1: [ehr, dns_ad]
+  pump2: [ehr, dns_ad]
+  imaging1: [pacs, dns_ad]
