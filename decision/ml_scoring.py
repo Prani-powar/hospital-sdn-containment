@@ -12,7 +12,7 @@ from pathlib import Path
 import joblib
 
 from decision.features import FEATURE_FIELDS
-from decision.ml_pipeline import FEATURE_VERSION, MODEL_FIELDS, ROLES
+from decision.model_contract import FEATURE_VERSION, MODEL_FIELDS, ROLES
 
 
 class MlScorer:
@@ -28,7 +28,8 @@ class MlScorer:
                 metadata.get("model_fields") != list(MODEL_FIELDS)):
             raise ValueError("Unsupported ML artifact metadata")
         m1 = joblib.load(directory / "m1_isolation_forest.joblib")
-        m2 = joblib.load(directory / "m2_random_forest.joblib")
+        standalone = metadata.get('artifact_type') == 'isolation-forest-only-v1'
+        m2 = None if standalone else joblib.load(directory / "m2_random_forest.joblib")
         if (not isinstance(m1, dict) or m1.get("feature_spec_version") != FEATURE_VERSION or
                 tuple(m1.get("model_fields", ())) != MODEL_FIELDS or not isinstance(m1.get("models"), dict) or
                 not isinstance(m1.get("raw_score_thresholds"), dict)):
@@ -46,10 +47,13 @@ class MlScorer:
         vector = [[feature[key] for key in MODEL_FIELDS]]
         raw = float(-self.m1["models"][role].decision_function(vector)[0])
         threshold = float(self.m1["raw_score_thresholds"][role])
-        m2_probability = float(self.m2.predict_proba(vector)[0, 1])
-        return {"model_artifact_created_at": self.metadata["created_at"], "role": role,
+        result = {"model_artifact_created_at": self.metadata["created_at"], "role": role,
                 "m1_raw_anomaly_score": raw, "m1_threshold": threshold,
-                "m1_anomalous": raw >= threshold, "m2_attack_probability": m2_probability,
-                "m2_threshold": float(self.metadata["models"]["m2_random_forest"]["threshold"]),
-                "m2_anomalous": m2_probability >= float(self.metadata['models']['m2_random_forest']['threshold']),
+                "m1_anomalous": raw > threshold if self.metadata.get('artifact_type') == 'isolation-forest-only-v1' else raw >= threshold,
                 "policy_binding": "selected explicitly by decision.live --detector; scoring alone does not mutate"}
+        if self.m2 is not None:
+            probability = float(self.m2.predict_proba(vector)[0, 1])
+            threshold2 = float(self.metadata['models']['m2_random_forest']['threshold'])
+            result.update(m2_attack_probability=probability, m2_threshold=threshold2,
+                          m2_anomalous=probability >= threshold2)
+        return result

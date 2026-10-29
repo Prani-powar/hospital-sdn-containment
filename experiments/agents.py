@@ -59,7 +59,7 @@ def run(args):
         emit('agent_ready', role=hosts[args.host]['role'], seed=args.seed)
         while time.monotonic() - start < args.duration:
             now = time.monotonic()
-            if not infected and args.host == args.source and now - start >= args.attack_after:
+            if not infected and not getattr(args, 'normal_only', False) and args.host == args.source and now - start >= args.attack_after:
                 infected = True
                 emit('infection_marker', source='scenario_seed', synthetic=True)
             if infected and now >= attack_next:
@@ -109,6 +109,7 @@ def run(args):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--normal-only', action='store_true', help='Disable seed activation; collect controlled normal traffic')
     p.add_argument('--topology', type=Path, required=True)
     p.add_argument('--host', required=True); p.add_argument('--source', required=True)
     p.add_argument('--run-id', required=True); p.add_argument('--seed', type=int, required=True)

@@ -69,7 +69,7 @@ class Experiment(Demo):
                 '--topology', str(self.paths['topology']), '--host', name, '--source', source,
                 '--run-id', self.run_id, '--seed', str(self.args.seed), '--scenario', self.args.scenario,
                 '--rate', str(self.args.rate), '--duration', str(duration),
-                '--attack-after', str(self.args.warmup), '--output', str(self.directory/f'agent-{name}.jsonl')],
+                '--attack-after', str(self.args.warmup), '--output', str(self.directory/f'agent-{name}.jsonl')]+(['--normal-only'] if self.args.normal_only else []),
                 'agent-'+name, net.get(name)))
         warmup_start = time.monotonic_ns()
         self.wait(self.args.warmup)
@@ -138,12 +138,12 @@ class Experiment(Demo):
             from experiments.metrics import resources
             metrics.update(resources(read_jsonl(self.directory/'samples.jsonl')))
             instrumentation_ok = (all(any(r['stage']=='agent_ready' and r['host']==h for r in rows) for h in inventory)
-                and metrics['source_host'] is not None and metrics['critical_attempted'] > 0
+                and (self.args.normal_only or metrics['source_host'] is not None) and metrics['critical_attempted'] > 0
                 and all(v['attempted'] >= v['minimum_expected_probes'] and v['invalid_records']==0
                         for s in clinical['services'] for v in s['sources']))
             self.report = {'schema_version':2, 'run_id':self.run_id, 'baseline':self.args.baseline,
                 'scenario':self.args.scenario, 'detector':self.args.detector, 'seed':self.args.seed,
-                'partition': self.args.partition, 'hosts':len(inventory), 'rate':self.args.rate,
+                'partition': self.args.partition, 'normal_only':self.args.normal_only, 'hosts':len(inventory), 'rate':self.args.rate,
                 'window':self.args.window, 'threshold_scale':self.args.threshold_scale,
                 'hysteresis':self.args.hysteresis, 'ablation':self.args.ablation, 'controller_epoch':self.epoch,
                 'warmup_start_ns':warmup_start, 'measurement_start_ns':self.measure_start, 'end_ns':end,
@@ -165,6 +165,7 @@ class Experiment(Demo):
 
 def parser():
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument('--normal-only',action='store_true',help='Controlled normal collection without attack activation; requires B0')
     p.add_argument('--baseline', choices=('B0','B1','B2','B3'), default='B3')
     p.add_argument('--scenario', choices=('S1','S2','S3'), default='S1')
     p.add_argument('--detector', choices=('M3','M1','M2'), default='M3')
@@ -188,6 +189,7 @@ def parser():
 
 def main():
     args = parser().parse_args()
+    require(not args.normal_only or args.baseline == 'B0', 'Normal-only collection requires B0 (no enforcement)')
     require(0 < args.rate <= 20 and 10 <= args.duration <= 90 and
             args.window+3 <= args.warmup <= 30, 'Invalid rate, warm-up or duration')
     require(args.seed in (range(101,111) if args.partition=='validation' else range(201,211)),

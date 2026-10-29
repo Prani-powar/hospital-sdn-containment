@@ -27,6 +27,8 @@ def bind_detector(engine, detector, scorer=None):
     if detector != 'M3':
         if scorer is None:
             raise ValueError('M1/M2 enforcement requires --ml-model-directory')
+        if detector == 'M2' and getattr(scorer, 'metadata', {}).get('artifact_type') == 'isolation-forest-only-v1':
+            raise ValueError('This artifact contains Isolation Forest only; select M1')
         def selected(feature):
             scores = scorer.score(feature)
             prefix = detector.lower()
