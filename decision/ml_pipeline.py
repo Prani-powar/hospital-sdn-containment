@@ -29,12 +29,7 @@ from sklearn.preprocessing import StandardScaler
 from decision.features import FEATURE_FIELDS
 
 ROOT = Path(__file__).resolve().parents[1]
-FEATURE_VERSION = "source-ingress-proxy-v1"
-# Timestamp identifies a collection cut, while host/role identify the lab
-# inventory.  Neither belongs in a learned behavioural vector.
-MODEL_FIELDS = ("flow_count", "unique_dst", "unique_dst_ports", "bytes_in", "bytes_out",
-                "pkts_in", "pkts_out", "new_peers", "off_allow_list_flows", "short_flows")
-ROLES = {"admin", "clinical", "critical_server", "iomt", "guest", "vendor"}
+from decision.model_contract import FEATURE_VERSION, MODEL_FIELDS, ROLES
 
 
 def _fail(message: str) -> None:

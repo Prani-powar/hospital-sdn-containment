@@ -95,3 +95,7 @@ See [ML pipeline](docs/ML_PIPELINE.md) and [lab evaluation runbook](docs/LAB_EVA
 Research implementation: [experiment runbook](docs/RESEARCH_RUNBOOK.md) and
 [threat model / dataset card](docs/THREAT_MODEL_AND_DATASET.md). Real benchmark
 numbers remain pending Linux/OVS execution; generated plans are not results.
+
+For learned detection without a labelled attack-training dataset, see the
+[standalone Isolation Forest workflow](docs/ISOLATION_FOREST.md): collect normal
+lab runs, calibrate on separate seeds, then start the persistent lab with M1.

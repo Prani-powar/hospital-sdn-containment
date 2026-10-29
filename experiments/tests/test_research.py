@@ -108,4 +108,21 @@ class ResearchTests(unittest.TestCase):
             rows=[json.loads(l) for l in (Path(tmp)/'a.jsonl').read_text().splitlines()]
             self.assertTrue(any(r['stage']=='normal_reply' for r in rows))
 
+    def test_normal_only_agents_do_not_activate_or_spread(self):
+        topology={'hosts':[dict(name='a',ip='127.0.0.2/8',role='admin'),dict(name='dns_ad',ip='127.0.0.3/8',role='critical_server')]}
+        failures=[]
+        def worker(args):
+            try:run_agent(args)
+            except Exception as exc:failures.append(exc)
+        with tempfile.TemporaryDirectory() as tmp, patch('experiments.agents.load_plan',return_value=topology):
+            args=[SimpleNamespace(topology=Path('fixture'),host=h,source='a',run_id='a'*32,seed=101,scenario='S1',
+                      normal_only=True,rate=4,duration=1.2,attack_after=.1,output=Path(tmp)/(h+'.jsonl')) for h in ('a','dns_ad')]
+            threads=[threading.Thread(target=worker,args=(a,)) for a in args]
+            for t in threads:t.start()
+            for t in threads:t.join(timeout=5)
+            self.assertFalse(failures)
+            rows=[json.loads(line) for a in args for line in a.output.read_text().splitlines()]
+            self.assertFalse(any(r['stage'] in ('attack_send','infection_marker','marker_received') for r in rows))
+            self.assertTrue(any(r['stage']=='normal_reply' for r in rows))
+
 if __name__=='__main__':unittest.main()
